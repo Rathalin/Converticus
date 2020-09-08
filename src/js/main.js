@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
         data: {
             collection: new ConversionCollection(),
             selectedCategory: {},
-            input1: 1,
-            input2: 1,
+            precision: 3.0,
+            input1: (1.0).toFixed(this.precision),
+            input2: (1.0).toFixed(this.precision),
         },
 
 
@@ -33,18 +34,29 @@ document.addEventListener('DOMContentLoaded', function () {
         methods: {
 
             convert(leftToRight) {
-                console.log("converted");
                 // find conversion factor
                 let unit1 = this.getSelectedUnit1();
                 let unit2 = this.getSelectedUnit2();
                 try {
                     let factor = this.selectedCategory.findConversionFactor(unit1, unit2);
-                    // only update values when not correctly calculated
+                    // only update values when not yet calculated
                     if (this.input1 * factor !== this.input2) {
                         if (leftToRight) {
-                            this.input2 = this.input1 * factor;
+                            // parse input1 to float
+                            let inp1Float = parseFloat(this.input1);
+                            if (!isNaN(inp1Float)) {
+                                this.input1 = inp1Float.toFixed(this.precision);
+                            }
+                            // calculate input2
+                            this.input2 = (this.input1 * factor).toFixed(this.precision);
                         } else {
-                            this.input1 = this.input2 / factor;
+                            // parse input2 to float
+                            let inp2Float = parseFloat(this.input2);
+                            if (!isNaN(inp2Float)) {
+                                this.input2 = inp2Float.toFixed(this.precision);
+                            }
+                            // calculate input1
+                            this.input1 = (this.input2 / factor).toFixed(this.precision);
                         }
                     }
                 } catch (e) {
@@ -103,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         created() {
             this.collection = ConversionCollection.getFullCollection();
             console.info("Collection loaded.");
-            //console.log(`"collection": ` + JSON.stringify(this.collection, null, '\t'));
+            console.log(`"collection": ` + JSON.stringify(this.collection, null, '\t'));
         },
 
 
