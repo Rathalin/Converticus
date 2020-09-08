@@ -2,9 +2,14 @@
 
 /*
 
+@author:    Daniel Flockert
+@date:      08.09.2020
 
+Conversion 
+Contains the combination between two units and their factor to calculate the conversion
 
 */
+
 
 export class Conversion {
 

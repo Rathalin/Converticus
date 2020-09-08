@@ -1,9 +1,15 @@
 "use strict";
+
 /*
 
+@author:    Daniel Flockert
+@date:      08.09.2020
 
+Category 
+Holds and manages all units and their conversions
 
 */
+
 
 import { Conversion } from "./Conversion.js";
 import { Unit } from "./Unit.js";

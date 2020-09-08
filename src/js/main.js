@@ -1,10 +1,15 @@
 "use strict";
-/*
-MTD280 Online Multimedia
-http://www.fh-ooe.at/mtd
 
-Simple Vue.js Application Template
+/*
+
+@author:    Daniel Flockert
+@date:      08.09.2020
+
+Main file for Converticus app
+Displays and handles the ConversionCollection
+
 */
+
 
 import { ConversionCollection } from "./conversion/ConversionCollection.js";
 
@@ -26,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // methods
         methods: {
-
 
             convert(leftToRight) {
                 console.log("converted");

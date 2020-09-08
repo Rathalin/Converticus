@@ -1,12 +1,14 @@
 "use strict";
 
 /*
+
+@author:    Daniel Flockert
+@date:      08.09.2020
+
 Conversion Collection
 Holds all categories with units and their conversions in it
 Also holds the default collection
 
-@author:    Daniel Flockert
-@date:      07.09.2020
 */
 
 import { Category } from "./Category.js";
