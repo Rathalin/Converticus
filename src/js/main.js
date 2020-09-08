@@ -104,8 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
             },
 
 
-            prettyprint(obj) {
-                console.log(JSON.stringify(obj, null, '\t'));
+            toPrettyString(obj) {
+                return JSON.stringify(obj, null, '\t');
             },
 
         },
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
         created() {
             this.collection = ConversionCollection.getFullCollection();
             console.info("Collection loaded.");
-            console.log(`"collection": ` + JSON.stringify(this.collection, null, '\t'));
+            console.info(`collection: ${this.toPrettyString(this.collection)}`);
         },
 
 
