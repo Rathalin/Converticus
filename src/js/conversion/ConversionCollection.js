@@ -39,7 +39,7 @@ export class ConversionCollection {
         let collection = new ConversionCollection();
         
         collection.addCategory(ConversionCollection.getCategoryLength());
-        //collection.addCategory(ConversionCollection.getCategoryDatasize());
+        collection.addCategory(ConversionCollection.getCategorySpeed());
 
 
         return collection;
@@ -130,6 +130,36 @@ export class ConversionCollection {
         categoryLength.addConversionByName("Inches", "Nautical Mile", 1.0 / 72913.0);
 
         return categoryLength;
+    }
+
+
+    /**
+     * Returns the full category Speed with all units and conversions in it
+     */
+    static getCategorySpeed() {
+        let categorySpeed = new Category("Speed");
+
+        categorySpeed.addUnit("Miles per Hour");
+        categorySpeed.addUnit("Feet per Second");
+        categorySpeed.addUnit("Meters per Second");
+        categorySpeed.addUnit("Kilometers per Hour");
+        categorySpeed.addUnit("Knots");
+
+        categorySpeed.addConversionByName("Miles per Hour", "Feet per Second", 1.467);
+        categorySpeed.addConversionByName("Miles per Hour", "Meters per Second", 1.0/ 2.237);
+        categorySpeed.addConversionByName("Miles per Hour", "Kilometers per Hour", 1.609);
+        categorySpeed.addConversionByName("Miles per Hour", "Knots", 1.0 / 1.151);
+        
+        categorySpeed.addConversionByName("Feet per Second", "Meters per Second", 1.0 / 3.281);
+        categorySpeed.addConversionByName("Feet per Second", "Kilometers per Hour", 1.097);
+        categorySpeed.addConversionByName("Feet per Second", "Knots", 1.0 / 1.688);
+        
+        categorySpeed.addConversionByName("Meters per Second", "Kilometers per Hour", 3.6);
+        categorySpeed.addConversionByName("Meters per Second", "Knots", 1.944);
+
+        categorySpeed.addConversionByName("Kilometers per Hour", "Knots", 1.0 / 1.852);
+
+        return categorySpeed;
     }
 
 

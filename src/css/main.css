@@ -36,6 +36,9 @@ header h2 {
     height: 20px;
 }
 
+.input-field input[type=number] {
+    text-align: right;
+}
 
 /* select item text color */
 

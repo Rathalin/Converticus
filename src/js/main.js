@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById("select-unit-1").selectedIndex = 0;
                 document.getElementById("select-unit-2").selectedIndex = 1;
                 this.requestMaterializeUpdate();
+                this.convert(true);
             },
 
 
