@@ -37,7 +37,7 @@ export class ConversionCollection {
         let collection = new ConversionCollection();
         
         collection.addCategory(ConversionCollection.getCategoryLength());
-        collection.addCategory(ConversionCollection.getCategoryDatasize());
+        //collection.addCategory(ConversionCollection.getCategoryDatasize());
 
 
         return collection;
