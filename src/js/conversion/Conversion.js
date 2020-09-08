@@ -6,17 +6,17 @@
 @date:      08.09.2020
 
 Conversion 
-Contains the combination between two units and their factor to calculate the conversion
+Contains the combination between two units and their formula to calculate the conversion
 
 */
 
 
 export class Conversion {
 
-    constructor(conversionId1, conversionId2, conversionFactor) {
+    constructor(conversionId1, conversionId2, formula) {
         this.id1 = conversionId1;
         this.id2 = conversionId2;
-        this.factor = conversionFactor;
+        this.formula = formula;
     }
 
 
@@ -29,7 +29,7 @@ export class Conversion {
 
 
     toString() {
-        return `Conversion: { id1: ${this.id1}, id2: ${this.id2}, factor: ${this.factor}}`;
+        return `Conversion: { id1: ${this.id1}, id2: ${this.id2}, formula: ${this.formula}}`;
     }
 
 }

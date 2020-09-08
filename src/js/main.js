@@ -34,13 +34,15 @@ document.addEventListener('DOMContentLoaded', function () {
         methods: {
 
             convert(leftToRight) {
-                // find conversion factor
+                // find conversion formula
                 let unit1 = this.getSelectedUnit1();
                 let unit2 = this.getSelectedUnit2();
                 try {
-                    let factor = this.selectedCategory.findConversionFactor(unit1, unit2);
+                    let formula = this.selectedCategory.findConversionFormula(unit1, unit2);
+                    console.log(formula);
                     // only update values when not yet calculated
-                    if (this.input1 * factor !== this.input2) {
+                    //if (this.input1 * formula !== this.input2) {
+                    if (formula(this.input1) !== this.input2) {
                         if (leftToRight) {
                             // parse input1 to float
                             let inp1Float = parseFloat(this.input1);
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 this.input1 = inp1Float.toFixed(this.precision);
                             }
                             // calculate input2
-                            this.input2 = (this.input1 * factor).toFixed(this.precision);
+                            this.input2 = formula(this.input1).toFixed(this.precision);
                         } else {
                             // parse input2 to float
                             let inp2Float = parseFloat(this.input2);
@@ -56,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                 this.input2 = inp2Float.toFixed(this.precision);
                             }
                             // calculate input1
-                            this.input1 = (this.input2 / factor).toFixed(this.precision);
+                            this.input1 = formula(this.input2).toFixed(this.precision);
                         }
                     }
                 } catch (e) {

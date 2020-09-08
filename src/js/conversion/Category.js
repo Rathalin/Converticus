@@ -39,13 +39,13 @@ export class Category {
         // add unit to array
         this.units.push(unit);
         // add recursive conversion
-        this.addConversionByName(unit.name, unit.name, 1.0);
+        this.addConversionByName(unit.name, unit.name, val => val * 1.0);
         return true;
     }
 
 
-    addConversionById(id1, id2, factor) {
-        let conversion = new Conversion(id1, id2, factor);
+    addConversionById(id1, id2, formula) {
+        let conversion = new Conversion(id1, id2, formula);
         // check if conversion already exists
         if (this.conversions.find(conv => conv.equals(conversion))) {
             throw `Conversion from ${conversion.id1} to ${conversion.id2} already exists!`;
@@ -56,7 +56,7 @@ export class Category {
     }
 
 
-    addConversionByName(name1, name2, factor) {
+    addConversionByName(name1, name2, formula) {
         // check if units exist
         let unit1 = this.units.find(cu => cu.name === name1);
         if (!unit1) {
@@ -68,20 +68,20 @@ export class Category {
         }
 
         // add conversion
-        this.addConversionById(unit1.id, unit2.id, factor);
+        this.addConversionById(unit1.id, unit2.id, formula);
     }
 
 
-    findConversionFactor(unit1, unit2) {
+    findConversionFormula(unit1, unit2) {
         // find normal id combination
         let conv = this.conversions.find(conv => conv.id1 === unit1.id && conv.id2 === unit2.id);
         if (conv) {
-            return conv.factor;
+            return conv.formula;
         }
         // find reverse id combination
         conv = this.conversions.find(conv => conv.id2 === unit1.id && conv.id1 === unit2.id);
         if (conv) {
-            return 1 / conv.factor;
+            return val => 1.0 / conv.formula(val);
         }
         throw `Conversion missing for "${unit1.name}" to "${unit2.name}"!`;
     }
