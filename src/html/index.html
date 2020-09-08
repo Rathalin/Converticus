@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converticus</title>
+
+    <!-- VueJs -->
+    <script src="../../lib/vuejs/vue.min.js"></script>
+    <!-- Materialize -->
+    <link rel="stylesheet" href="../../lib/materialize/css/materialize.css">
+    <script src="../../lib/materialize/js/materialize.min.js"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Custom Includes -->
+    <link rel="stylesheet" href="../css/main.css">
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/conversion/Conversion.js"></script>
+    <script type="module" src="../js/conversion/Unit.js"></script>
+    <script type="module" src="../js/conversion/Category.js"></script>
+    <script type="module" src="../js/conversion/ConversionCollection.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <div id="header-color-bar" class="cyan darken-1"></div>
+        <div class="row">
+            <h2 class="center cyan-text text-darken-1">Converticus</h2>
+        </div>
+    </header>
+
+    <main id="app">
+        <div class="container">
+            <div class="row">
+                <div class="input-field col s6 offset-s3">
+                    <select id="select-category" v-model="selectedCategory" @change="categoryChanged">
+                        <option v-for="cat in collection.categories" :key="cat.id" :value="cat">{{ cat.name }}</option>
+                    </select>
+                    <label>Category</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="input-unit-1" type="number" v-model.number="input1" @input="convert(true)">
+                </div>
+                <div class="input-field col s6">
+                    <input id="input-unit-2" type="number" v-model.number="input2" @input="convert(false)">
+                </div>
+                <div class="input-field col s6">
+                    <select id="select-unit-1" @change="convert(true)">
+                        <option v-for="unit in selectedCategory.units" :key="unit.id" :value="unit">{{ unit.name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="input-field col s6">
+                    <select id="select-unit-2" @change="convert(true)">
+                        <option v-for="unit in selectedCategory.units" :key="unit.id" :value="unit">{{ unit.name }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <button class="btn cyan darken-1" @click="debug()">Debug</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer cyan darken-1">
+        <div class="container">
+            <div class="row">
+                Daniel Flockert 2020
+                <i class="material-icons right">email</i>
+                <a class="white-text right"
+                    href="mailto:s1810238021@students.fh-hagenberg.at">danielflo1997@hotmail.com</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+
+</html>
