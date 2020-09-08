@@ -79,11 +79,6 @@ document.addEventListener('DOMContentLoaded', function () {
             },
 
 
-            debug() {
-                console.log(JSON.stringify(document.getElementById("select-unit-2").selectedIndex));
-            },
-
-
             requestMaterializeUpdate() {
                 // manually fix materializecss select
                 this.$nextTick(async () => {
