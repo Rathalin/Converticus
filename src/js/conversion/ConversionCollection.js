@@ -56,6 +56,7 @@ export class ConversionCollection {
         collection.addCategory(ConversionCollection.getCategorySpeed());
         collection.addCategory(ConversionCollection.getCategoryTemperature());
         collection.addCategory(ConversionCollection.getCategoryMass());
+        collection.addCategory(ConversionCollection.getCategoryPressure());
 
         return collection;
     }
@@ -149,54 +150,8 @@ export class ConversionCollection {
 
 
     /**
-     * Returns the full category Speed with all units and conversions in it
+     * Returns the full category Mass with all units and conversions in it
      */
-    static getCategorySpeed() {
-        let categorySpeed = new Category("Speed");
-
-        categorySpeed.addUnit("Miles per Hour");
-        categorySpeed.addUnit("Feet per Second");
-        categorySpeed.addUnit("Meters per Second");
-        categorySpeed.addUnit("Kilometers per Hour");
-        categorySpeed.addUnit("Knots");
-
-        categorySpeed.addConversionByName("Miles per Hour", "Feet per Second", val => val * 1.467, val => val / 1.467);
-        categorySpeed.addConversionByName("Miles per Hour", "Meters per Second", val => val / 2.237, val => val * 2.237);
-        categorySpeed.addConversionByName("Miles per Hour", "Kilometers per Hour", val => val * 1.609, val => val / 1.609);
-        categorySpeed.addConversionByName("Miles per Hour", "Knots", val => val / 1.151, val => val * 1.151);
-
-        categorySpeed.addConversionByName("Feet per Second", "Meters per Second", val => val / 3.281, val => val * 3.281);
-        categorySpeed.addConversionByName("Feet per Second", "Kilometers per Hour", val => val * 1.097, val => val / 1.097);
-        categorySpeed.addConversionByName("Feet per Second", "Knots", val => val / 1.688, val => val * 1.688);
-
-        categorySpeed.addConversionByName("Meters per Second", "Kilometers per Hour", val => val * 3.6, val => val / 3.6);
-        categorySpeed.addConversionByName("Meters per Second", "Knots", val => val * 1.944, val => val / 1.944);
-
-        categorySpeed.addConversionByName("Kilometers per Hour", "Knots", val => val / 1.852, val => val * 1.852);
-
-        return categorySpeed;
-    }
-
-
-    /**
-     * Returns the full category Temperature with all units and conversions in it
-     */
-    static getCategoryTemperature() {
-        let categoryTemperature = new Category("Temperature");
-
-        categoryTemperature.addUnit("Celsius");
-        categoryTemperature.addUnit("Fahrenheit");
-        categoryTemperature.addUnit("Kelvin");
-
-        categoryTemperature.addConversionByName("Celsius", "Fahrenheit", val => (val * (9.0 / 5.0)) + 32.0, val => (val - 32.0) * (5.0 / 9.0));
-        categoryTemperature.addConversionByName("Celsius", "Kelvin", val => val + 273.15, val => val - 273.15);
-
-        categoryTemperature.addConversionByName("Fahrenheit", "Kelvin", val => (val - 32.0) * (5.0 / 9.0) + 273.15, val => (val - 273.15) * (9.0 / 5.0) + 32.0);
-
-        return categoryTemperature;
-    }
-
-
     static getCategoryMass() {
         let categoryMass = new Category("Mass");
 
@@ -266,6 +221,85 @@ export class ConversionCollection {
         categoryMass.addConversionByName("Pound", "Ounce", val => val * 16.0, val => val / 16.0);
 
         return categoryMass;
+    }
+
+
+    /**
+     * Returns the full category Pressure with all units and conversions in it
+     */
+    static getCategoryPressure() {
+        let categoryPressure = new Category("Pressure");
+
+        categoryPressure.addUnit("Bar");
+        categoryPressure.addUnit("Pascal");
+        categoryPressure.addUnit("Pound Fource per Square Inch");
+        categoryPressure.addUnit("Standard Atmosphere");
+        categoryPressure.addUnit("Torr");
+
+        categoryPressure.addConversionByName("Bar", "Pascal", val => val * Math.pow(10, 5), val => val / Math.pow(10, 5));
+        categoryPressure.addConversionByName("Bar", "Pound Fource per Square Inch", val => val * 14.504, val => val / 14.504);
+        categoryPressure.addConversionByName("Bar", "Standard Atmosphere", val => val / 1.013, val => val * 1.013);
+        categoryPressure.addConversionByName("Bar", "Torr", val => val * 750.0, val => val / 750.0);
+
+        categoryPressure.addConversionByName("Pascal", "Pound Fource per Square Inch", val => val / 6895.0, val => val * 6895.0);
+        categoryPressure.addConversionByName("Pascal", "Standard Atmosphere", val => val / 101325.0, val => val * 101325.0);
+        categoryPressure.addConversionByName("Pascal", "Torr", val => val / 133.0, val => val * 133.0);
+
+        categoryPressure.addConversionByName("Pound Fource per Square Inch", "Standard Atmosphere", val => val / 14.696, val => val * 14.696);
+        categoryPressure.addConversionByName("Pound Fource per Square Inch", "Torr", val => val * 51.715, val => val / 51.715);
+        
+        categoryPressure.addConversionByName("Standard Atmosphere", "Torr", val => val * 760.0, val => val / 760.0);
+
+        return categoryPressure;
+    }
+
+
+    /**
+     * Returns the full category Speed with all units and conversions in it
+     */
+    static getCategorySpeed() {
+        let categorySpeed = new Category("Speed");
+
+        categorySpeed.addUnit("Miles per Hour");
+        categorySpeed.addUnit("Feet per Second");
+        categorySpeed.addUnit("Meters per Second");
+        categorySpeed.addUnit("Kilometers per Hour");
+        categorySpeed.addUnit("Knots");
+
+        categorySpeed.addConversionByName("Miles per Hour", "Feet per Second", val => val * 1.467, val => val / 1.467);
+        categorySpeed.addConversionByName("Miles per Hour", "Meters per Second", val => val / 2.237, val => val * 2.237);
+        categorySpeed.addConversionByName("Miles per Hour", "Kilometers per Hour", val => val * 1.609, val => val / 1.609);
+        categorySpeed.addConversionByName("Miles per Hour", "Knots", val => val / 1.151, val => val * 1.151);
+
+        categorySpeed.addConversionByName("Feet per Second", "Meters per Second", val => val / 3.281, val => val * 3.281);
+        categorySpeed.addConversionByName("Feet per Second", "Kilometers per Hour", val => val * 1.097, val => val / 1.097);
+        categorySpeed.addConversionByName("Feet per Second", "Knots", val => val / 1.688, val => val * 1.688);
+
+        categorySpeed.addConversionByName("Meters per Second", "Kilometers per Hour", val => val * 3.6, val => val / 3.6);
+        categorySpeed.addConversionByName("Meters per Second", "Knots", val => val * 1.944, val => val / 1.944);
+
+        categorySpeed.addConversionByName("Kilometers per Hour", "Knots", val => val / 1.852, val => val * 1.852);
+
+        return categorySpeed;
+    }
+
+
+    /**
+     * Returns the full category Temperature with all units and conversions in it
+     */
+    static getCategoryTemperature() {
+        let categoryTemperature = new Category("Temperature");
+
+        categoryTemperature.addUnit("Celsius");
+        categoryTemperature.addUnit("Fahrenheit");
+        categoryTemperature.addUnit("Kelvin");
+
+        categoryTemperature.addConversionByName("Celsius", "Fahrenheit", val => (val * (9.0 / 5.0)) + 32.0, val => (val - 32.0) * (5.0 / 9.0));
+        categoryTemperature.addConversionByName("Celsius", "Kelvin", val => val + 273.15, val => val - 273.15);
+
+        categoryTemperature.addConversionByName("Fahrenheit", "Kelvin", val => (val - 32.0) * (5.0 / 9.0) + 273.15, val => (val - 273.15) * (9.0 / 5.0) + 32.0);
+
+        return categoryTemperature;
     }
 
 
