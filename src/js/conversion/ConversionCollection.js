@@ -54,7 +54,7 @@ export class ConversionCollection {
 
         collection.addCategory(ConversionCollection.getCategoryLength());
         collection.addCategory(ConversionCollection.getCategorySpeed());
-        //collection.addCategory(ConversionCollection.getCategoryTemperature());
+        collection.addCategory(ConversionCollection.getCategoryTemperature());
 
         return collection;
     }
@@ -78,7 +78,7 @@ export class ConversionCollection {
         categoryLength.addUnit("Inches");
         categoryLength.addUnit("Nautical Mile");
 
-        categoryLength.addConversionByName("Kilometer", "Meter", val => val * Math.pow(10, 3), val => val / Math.pow(10, 3));
+        categoryLength.addConversionByName("Kilometer", "Meter", val => val * Math.pow(10, 3), val => {  console.log("inverse"); return val / Math.pow(10, 3);});
         categoryLength.addConversionByName("Kilometer", "Centimeter", val => val * Math.pow(10, 5), val => val / Math.pow(10, 5));
         categoryLength.addConversionByName("Kilometer", "Millimeter", val => val * Math.pow(10, 6), val => val / Math.pow(10, 6));
         categoryLength.addConversionByName("Kilometer", "Micrometer", val => val * Math.pow(10, 9), val => val / Math.pow(10, 9));
@@ -183,14 +183,14 @@ export class ConversionCollection {
     static getCategoryTemperature() {
         let categoryTemperature = new Category("Temperature");
 
-        categoryTemperature.addUnit("Degrees Centigrade");
-        categoryTemperature.addUnit("Degrees Fahrenheit");
+        categoryTemperature.addUnit("Celsius");
+        categoryTemperature.addUnit("Fahrenheit");
         categoryTemperature.addUnit("Kelvin");
 
-        categoryTemperature.addConversionByName("Degrees Centigrade", "Degrees Fahrenheit", val => (val * (9.0 / 5.0)) + 32.0);
-        categoryTemperature.addConversionByName("Degrees Centigrade", "Kelvin", val => val + 273.15);
+        categoryTemperature.addConversionByName("Celsius", "Fahrenheit", val => (val * (9.0 / 5.0)) + 32.0, val => (val - 32.0) * (5.0 / 9.0));
+        categoryTemperature.addConversionByName("Celsius", "Kelvin", val => val + 273.15, val => val - 273.15);
 
-        categoryTemperature.addConversionByName("Degrees Fahrenheit", "Kelvin", val => (val - 32.0) * (5.0 / 9.0) + 273.15);
+        categoryTemperature.addConversionByName("Fahrenheit", "Kelvin", val => (val - 32.0) * (5.0 / 9.0) + 273.15, val => (val - 273.15) * (9.0 / 5.0) + 32.0);
 
         return categoryTemperature;
     }

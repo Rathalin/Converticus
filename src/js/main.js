@@ -38,28 +38,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 let unit1 = this.getSelectedUnit1();
                 let unit2 = this.getSelectedUnit2();
                 try {
-                    let formula = this.selectedCategory.findConversionFormula(unit1, unit2);
-                    console.log(formula);
-                    console.log(formula(this.input1));
+                    let formula = leftToRight ? this.selectedCategory.findConversionFormula(unit1, unit2) : this.selectedCategory.findConversionFormula(unit2, unit1);
                     // only update values when not yet calculated
-                    //if (this.input1 * formula !== this.input2) {
                     if (formula(this.input1) !== this.input2) {
-                        if (leftToRight) {
-                            // parse input1 to float
-                            let inp1Float = parseFloat(this.input1);
-                            if (!isNaN(inp1Float)) {
-                                this.input1 = inp1Float.toFixed(this.precision);
+                        let input = leftToRight ? parseFloat(this.input1) : parseFloat(this.input2);
+                        // check if input is valid
+                        if (!isNaN(input)) {
+                            // convert
+                            let result = formula(input).toFixed(this.precision);
+                            // update input fields
+                            if (leftToRight) {
+                                this.input2 = result;
+                                this.input1 = input.toFixed(this.precision);
+                            } else {
+                                this.input1 = result;
+                                this.input2 = input.toFixed(this.precision);
                             }
-                            // calculate input2
-                            this.input2 = formula(this.input1).toFixed(this.precision);
-                        } else {
-                            // parse input2 to float
-                            let inp2Float = parseFloat(this.input2);
-                            if (!isNaN(inp2Float)) {
-                                this.input2 = inp2Float.toFixed(this.precision);
-                            }
-                            // calculate input1
-                            this.input1 = formula(this.input2).toFixed(this.precision);
                         }
                     }
                 } catch (e) {
