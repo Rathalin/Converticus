@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 try {
                     let formula = this.selectedCategory.findConversionFormula(unit1, unit2);
                     console.log(formula);
+                    console.log(formula(this.input1));
                     // only update values when not yet calculated
                     //if (this.input1 * formula !== this.input2) {
                     if (formula(this.input1) !== this.input2) {
@@ -118,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
         created() {
             this.collection = ConversionCollection.getFullCollection();
             console.info("Collection loaded.");
-            console.info(`collection: ${this.toPrettyString(this.collection)}`);
+            console.info(`"collection": ${this.toPrettyString(this.collection)}`);
         },
 
 
