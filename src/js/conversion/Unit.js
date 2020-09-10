@@ -3,7 +3,7 @@
 /*
 
 @author:    Daniel Flockert
-@date:      08.09.2020
+@date:      11.09.2020
 
 Unit
 Contains id and name of a unit

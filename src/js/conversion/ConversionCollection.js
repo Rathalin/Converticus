@@ -3,7 +3,7 @@
 /*
 
 @author:    Daniel Flockert
-@date:      08.09.2020
+@date:      11.09.2020
 
 Conversion Collection
 Holds all categories with units and their conversions in it
@@ -55,6 +55,7 @@ export class ConversionCollection {
         collection.addCategory(ConversionCollection.getCategoryLength());
         collection.addCategory(ConversionCollection.getCategorySpeed());
         collection.addCategory(ConversionCollection.getCategoryTemperature());
+        collection.addCategory(ConversionCollection.getCategoryMass());
 
         return collection;
     }
@@ -78,7 +79,7 @@ export class ConversionCollection {
         categoryLength.addUnit("Inches");
         categoryLength.addUnit("Nautical Mile");
 
-        categoryLength.addConversionByName("Kilometer", "Meter", val => val * Math.pow(10, 3), val => {  console.log("inverse"); return val / Math.pow(10, 3);});
+        categoryLength.addConversionByName("Kilometer", "Meter", val => val * Math.pow(10, 3), val => { console.log("inverse"); return val / Math.pow(10, 3); });
         categoryLength.addConversionByName("Kilometer", "Centimeter", val => val * Math.pow(10, 5), val => val / Math.pow(10, 5));
         categoryLength.addConversionByName("Kilometer", "Millimeter", val => val * Math.pow(10, 6), val => val / Math.pow(10, 6));
         categoryLength.addConversionByName("Kilometer", "Micrometer", val => val * Math.pow(10, 9), val => val / Math.pow(10, 9));
@@ -195,6 +196,77 @@ export class ConversionCollection {
         return categoryTemperature;
     }
 
+
+    static getCategoryMass() {
+        let categoryMass = new Category("Mass");
+
+        categoryMass.addUnit("Ton");
+        categoryMass.addUnit("Kilogram");
+        categoryMass.addUnit("Gram");
+        categoryMass.addUnit("Milligram");
+        categoryMass.addUnit("Microgram");
+        categoryMass.addUnit("Imperial Ton");
+        categoryMass.addUnit("US Ton");
+        categoryMass.addUnit("Stone");
+        categoryMass.addUnit("Pound");
+        categoryMass.addUnit("Ounce");
+
+        categoryMass.addConversionByName("Ton", "Kilogram", val => val * Math.pow(10, 3), val => val / Math.pow(10, 3));
+        categoryMass.addConversionByName("Ton", "Gram", val => val * Math.pow(10, 6), val => val / Math.pow(10, 6));
+        categoryMass.addConversionByName("Ton", "Milligram", val => val * Math.pow(10, 9), val => val / Math.pow(10, 9));
+        categoryMass.addConversionByName("Ton", "Microgram", val => val * Math.pow(10, 12), val => val / Math.pow(10, 12));
+        categoryMass.addConversionByName("Ton", "Imperial Ton", val => val / 1.016, val => val * 1.016);
+        categoryMass.addConversionByName("Ton", "US Ton", val => val * 1.102, val => val / 1.102);
+        categoryMass.addConversionByName("Ton", "Stone", val => val * 157.0, val => val / 157.0);
+        categoryMass.addConversionByName("Ton", "Pound", val => val * 2205.0, val => val / 2205.0);
+        categoryMass.addConversionByName("Ton", "Ounce", val => val * 35274.0, val => val / 35274.0);
+        
+        categoryMass.addConversionByName("Kilogram", "Gram", val => val * Math.pow(10, 3), val => val / Math.pow(10, 3));
+        categoryMass.addConversionByName("Kilogram", "Milligram", val => val * Math.pow(10, 6), val => val / Math.pow(10, 6));
+        categoryMass.addConversionByName("Kilogram", "Microgram", val => val * Math.pow(10, 9), val => val / Math.pow(10, 9));
+        categoryMass.addConversionByName("Kilogram", "Imperial Ton", val => val / 1016.0, val => val * 1016.0);
+        categoryMass.addConversionByName("Kilogram", "US Ton", val => val / 907.0, val => val * 907.0);
+        categoryMass.addConversionByName("Kilogram", "Stone", val => val / 6.35, val => val * 6.35);
+        categoryMass.addConversionByName("Kilogram", "Pound", val => val * 2.205, val => val / 2.205);
+        categoryMass.addConversionByName("Kilogram", "Ounce", val => val * 35.274, val => val / 35.274);
+        
+        categoryMass.addConversionByName("Gram", "Milligram", val => val * Math.pow(10, 3), val => val / Math.pow(10, 3));
+        categoryMass.addConversionByName("Gram", "Microgram", val => val * Math.pow(10, 6), val => val / Math.pow(10, 6));
+        categoryMass.addConversionByName("Gram", "Imperial Ton", val => val / (1.016 * Math.pow(10, 6)), val => val * (1.016 * Math.pow(10, 6)));
+        categoryMass.addConversionByName("Gram", "US Ton", val => val / 907185.0, val => val * 907185.0);
+        categoryMass.addConversionByName("Gram", "Stone", val => val / 6350.0, val => val * 6350.0);
+        categoryMass.addConversionByName("Gram", "Pound", val => val / 454.0, val => val * 454.0);
+        categoryMass.addConversionByName("Gram", "Ounce", val => val / 28.35, val => val * 28.35);
+        
+        categoryMass.addConversionByName("Milligram", "Microgram", val => val * Math.pow(10, 3), val => val / Math.pow(10, 3));
+        categoryMass.addConversionByName("Milligram", "Imperial Ton", val => val / (1.016 * Math.pow(10, 9)), val => val * (1.016 * Math.pow(10, 9)));
+        categoryMass.addConversionByName("Milligram", "US Ton", val => val / (9.07185 * Math.pow(10, 8)), val => val * (9.07185 * Math.pow(10, 8)));
+        categoryMass.addConversionByName("Milligram", "Stone", val => val / (6.350 * Math.pow(10, 6)), val => val * (6.350 * Math.pow(10, 6)));
+        categoryMass.addConversionByName("Milligram", "Pound", val => val / 453592.0, val => val * 453592.0);
+        categoryMass.addConversionByName("Milligram", "Ounce", val => val / 28350.0, val => val * 28350.0);
+        
+        categoryMass.addConversionByName("Microgram", "Imperial Ton", val => val / (1.016 * Math.pow(10, 12)), val => val * (1.016 * Math.pow(10, 12)));
+        categoryMass.addConversionByName("Microgram", "US Ton", val => val / (9.07185 * Math.pow(10, 11)), val => val * (9.07185 * Math.pow(10, 11)));
+        categoryMass.addConversionByName("Microgram", "Stone", val => val / (6.350 * Math.pow(10, 9)), val => val * (6.350 * Math.pow(10, 9)));
+        categoryMass.addConversionByName("Microgram", "Pound", val => val / (4.53592 * Math.pow(10, 8)), val => val * (4.53592 * Math.pow(10, 8)));
+        categoryMass.addConversionByName("Microgram", "Ounce", val => val / (2.835 * Math.pow(10, 7)), val => val * (2.835 * Math.pow(10, 7)));
+        
+        categoryMass.addConversionByName("Imperial Ton", "US Ton", val => val * 1.12, val => val / 1.12);
+        categoryMass.addConversionByName("Imperial Ton", "Stone", val => val * 160.0, val => val / 160.0);
+        categoryMass.addConversionByName("Imperial Ton", "Pound", val => val * 2240.0, val => val / 2240.0);
+        categoryMass.addConversionByName("Imperial Ton", "Ounce", val => val * 35840.0, val => val / 35840.0);
+        
+        categoryMass.addConversionByName("US Ton", "Stone", val => val * 143.0, val => val / 143.0);
+        categoryMass.addConversionByName("US Ton", "Pound", val => val * 2000.0, val => val / 2000.0);
+        categoryMass.addConversionByName("US Ton", "Ounce", val => val * 32000.0, val => val / 32000.0);
+        
+        categoryMass.addConversionByName("Stone", "Pound", val => val * 14.0, val => val / 14.0);
+        categoryMass.addConversionByName("Stone", "Ounce", val => val * 224.0, val => val / 224.0);
+
+        categoryMass.addConversionByName("Pound", "Ounce", val => val * 16.0, val => val / 16.0);
+
+        return categoryMass;
+    }
 
 
 }

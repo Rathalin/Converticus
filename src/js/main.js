@@ -3,7 +3,7 @@
 /*
 
 @author:    Daniel Flockert
-@date:      08.09.2020
+@date:      11.09.2020
 
 Main file for Converticus app
 Displays and handles the ConversionCollection
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     new Vue({
         // name
         el: "#app",
-
+ 
 
         // data
         data: {

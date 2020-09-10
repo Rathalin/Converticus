@@ -3,7 +3,7 @@
 /*
 
 @author:    Daniel Flockert
-@date:      08.09.2020
+@date:      11.09.2020
 
 Conversion 
 Contains the combination between two units and their formula to calculate the conversion

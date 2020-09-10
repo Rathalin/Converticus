@@ -3,7 +3,7 @@
 /*
 
 @author:    Daniel Flockert
-@date:      08.09.2020
+@date:      11.09.2020
 
 Category 
 Holds and manages all units and their conversions
