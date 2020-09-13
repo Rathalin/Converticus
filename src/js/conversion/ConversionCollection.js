@@ -107,6 +107,33 @@ export class ConversionCollection {
         categoryEnergy.addConversionByName("Gram Calorie", "British Thermal Unit", val => val / 252.0, val => val * 252.0);
         categoryEnergy.addConversionByName("Gram Calorie", "US Therm", val => val / (2.521 * Math.pow(10, 7)), val => val * (2.521 * Math.pow(10, 7)));
         categoryEnergy.addConversionByName("Gram Calorie", "Foot Pound", val => val * 3.086, val => val / 3.086);
+        
+        categoryEnergy.addConversionByName("Kilocalorie", "Watt hour", val => val * 1.162, val => val / 1.162);
+        categoryEnergy.addConversionByName("Kilocalorie", "Kilowatt Hour", val => val / 860.0, val => val * 860.0);
+        categoryEnergy.addConversionByName("Kilocalorie", "Electronvolt", val => val * (9.223 * Math.pow(10, 18)), val => val / (9.223 * Math.pow(10, 18)));
+        categoryEnergy.addConversionByName("Kilocalorie", "British Thermal Unit", val => val * 3.966, val => val / 3.966);
+        categoryEnergy.addConversionByName("Kilocalorie", "US Therm", val => val / 25210.0, val => val * 25210.0);
+        categoryEnergy.addConversionByName("Kilocalorie", "Foot Pound", val => val * 3086.0, val => val / 3086.0);
+        
+        categoryEnergy.addConversionByName("Watt hour", "Kilowatt Hour", val => val / 1000.0, val => val * 1000.0);
+        categoryEnergy.addConversionByName("Watt hour", "Electronvolt", val => val * (9.223 * Math.pow(10, 18)), val => val / (9.223 * Math.pow(10, 18)));
+        categoryEnergy.addConversionByName("Watt hour", "British Thermal Unit", val => val * 3.412, val => val / 3.412);
+        categoryEnergy.addConversionByName("Watt hour", "US Therm", val => val / 29300.0, val => val * 29300.0);
+        categoryEnergy.addConversionByName("Watt hour", "Foot Pound", val => val * 2655.0, val => val / 2655.0);
+
+        categoryEnergy.addConversionByName("Kilowatt Hour", "Electronvolt", val => val * (9.223 * Math.pow(10, 18)), val => val / (9.223 * Math.pow(10, 18)));
+        categoryEnergy.addConversionByName("Kilowatt Hour", "British Thermal Unit", val => val * 3412.0, val => val / 3412.0);
+        categoryEnergy.addConversionByName("Kilowatt Hour", "US Therm", val => val / 29.300, val => val * 29.300);
+        categoryEnergy.addConversionByName("Kilowatt Hour", "Foot Pound", val => val * (2.655 * Math.pow(10, 6)), val => val / (2.6550 * Math.pow(10, 6)));
+
+        categoryEnergy.addConversionByName("Electronvolt", "British Thermal Unit", val => val / (9.223 * Math.pow(10, 18)), val => val * (9.223 * Math.pow(10, 18)));
+        categoryEnergy.addConversionByName("Electronvolt", "US Therm", val => val / (9.223 * Math.pow(10, 18)), val => val * (9.223 * Math.pow(10, 18)));
+        categoryEnergy.addConversionByName("Electronvolt", "Foot Pound", val => val / (8.462 * Math.pow(10, 18)), val => val * (8.462 * Math.pow(10, 18)));
+
+        categoryEnergy.addConversionByName("British Thermal Unit", "US Therm", val => val * 99976.0, val => val / 99976.0);
+        categoryEnergy.addConversionByName("British Thermal Unit", "Foot Pound", val => val * 778.0, val => val / 778.0);
+
+        categoryEnergy.addConversionByName("US Therm", "Foot Pound", val => val * (778.0 * Math.pow(10, 7)), val => val / (778.0 * Math.pow(10, 7)));
 
         return categoryEnergy;
     }
