@@ -58,7 +58,7 @@ export class ConversionCollection {
         collection.addCategory(ConversionCollection.getCategoryPressure());
         collection.addCategory(ConversionCollection.getCategorySpeed());
         collection.addCategory(ConversionCollection.getCategoryTemperature());
-        //collection.addCategory(ConversionCollection.getCategoryAtzls());
+        collection.addCategory(ConversionCollection.getCategoryAtzls());
 
         return collection;
     }
@@ -350,6 +350,30 @@ export class ConversionCollection {
         categoryTemperature.addConversionByName("Fahrenheit", "Kelvin", val => (val - 32.0) * (5.0 / 9.0) + 273.15, val => (val - 273.15) * (9.0 / 5.0) + 32.0);
 
         return categoryTemperature;
+    }
+
+
+    /**
+     * hmmmmm
+     */
+    static getCategoryAtzls() {
+        let categoryChongs = new Category("Atzls");
+
+        categoryChongs.addUnit("Tschowatz");
+        categoryChongs.addUnit("Chongatz");
+        categoryChongs.addUnit("Mongatz");
+        categoryChongs.addUnit("Flombatz");
+
+        categoryChongs.addConversionByName("Chongatz", "Mongatz", val => val * 3.5, val => val / 3.5);
+        categoryChongs.addConversionByName("Chongatz", "Flombatz", val => val * 16.0, val => val / 16.0);
+        categoryChongs.addConversionByName("Chongatz", "Tschowatz", val => val / 5.0, val => val * 5.0);       
+
+        categoryChongs.addConversionByName("Mongatz", "Flombatz", val => val * (16.0 / 3.5), val => val / (16.0 / 3.5));
+        categoryChongs.addConversionByName("Mongatz", "Tschowatz", val => val * (0.2 / 3.5), val => val / (0.2 / 3.5));         
+        
+        categoryChongs.addConversionByName("Flombatz", "Tschowatz", val => val * ((0.2 / 3.5) / 4.5) , val => val / ((0.2 / 3.5) / 4.5));      
+
+        return categoryChongs;
     }
 
 
