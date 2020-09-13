@@ -2,8 +2,8 @@
 
 /*
 
-@author:    Daniel Flockert
-@date:      11.09.2020
+@author:        Daniel Flockert
+@last_edited:   13.09.2020
 
 Main file for Converticus app
 Displays and handles the ConversionCollection

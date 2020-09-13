@@ -2,8 +2,8 @@
 
 /*
 
-@author:    Daniel Flockert
-@date:      11.09.2020
+@author:        Daniel Flockert
+@last_edited:   11.09.2020
 
 Unit
 Contains id and name of a unit

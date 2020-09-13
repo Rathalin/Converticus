@@ -2,8 +2,8 @@
 
 /*
 
-@author:    Daniel Flockert
-@date:      11.09.2020
+@author:        Daniel Flockert
+@last_edited:   13.09.2020
 
 Conversion Collection
 Holds all categories with units and their conversions in it
@@ -52,13 +52,63 @@ export class ConversionCollection {
     static getFullCollection() {
         let collection = new ConversionCollection();
 
+        collection.addCategory(ConversionCollection.getCategoryEnergy());
         collection.addCategory(ConversionCollection.getCategoryLength());
-        collection.addCategory(ConversionCollection.getCategorySpeed());
-        collection.addCategory(ConversionCollection.getCategoryTemperature());
         collection.addCategory(ConversionCollection.getCategoryMass());
         collection.addCategory(ConversionCollection.getCategoryPressure());
+        collection.addCategory(ConversionCollection.getCategorySpeed());
+        collection.addCategory(ConversionCollection.getCategoryTemperature());
+        //collection.addCategory(ConversionCollection.getCategoryAtzls());
 
         return collection;
+    }
+
+
+    /**
+     * Returns the full category Energy with all units and conversions in it
+     */
+    static getCategoryEnergy() {
+        let categoryEnergy = new Category("Energy");
+
+        categoryEnergy.addUnit("Joule");
+        categoryEnergy.addUnit("Kilojoule");
+        categoryEnergy.addUnit("Gram Calorie");
+        categoryEnergy.addUnit("Kilocalorie");
+        categoryEnergy.addUnit("Watt hour");
+        categoryEnergy.addUnit("Kilowatt Hour");
+        categoryEnergy.addUnit("Electronvolt");
+        categoryEnergy.addUnit("British Thermal Unit");
+        categoryEnergy.addUnit("US Therm");
+        categoryEnergy.addUnit("Foot Pound");
+
+        categoryEnergy.addConversionByName("Joule", "Kilojoule", val => val / Math.pow(10, 3), val => val * Math.pow(10, 3));
+        categoryEnergy.addConversionByName("Joule", "Gram Calorie", val => val / 4.184, val => val * 4.184);
+        categoryEnergy.addConversionByName("Joule", "Kilocalorie", val => val / 4184.0, val => val * 4184.0);
+        categoryEnergy.addConversionByName("Joule", "Watt hour", val => val / (3.6 * Math.pow(10, 3)), val => val * (3.6 * Math.pow(10, 3)));
+        categoryEnergy.addConversionByName("Joule", "Kilowatt Hour", val => val / (3.6 * Math.pow(10, 6)), val => val * (3.6 * Math.pow(10, 6)));
+        categoryEnergy.addConversionByName("Joule", "Electronvolt", val => val * (6.242 * Math.pow(10, 18)), val => val / (6.242 * Math.pow(10, 18)));
+        categoryEnergy.addConversionByName("Joule", "British Thermal Unit", val => val / (1.055 * Math.pow(10, 3)), val => val * (1.055 * Math.pow(10, 3)));
+        categoryEnergy.addConversionByName("Joule", "US Therm", val => val / (1.055 * Math.pow(10, 8)), val => val * (1.055 * Math.pow(10, 8)));
+        categoryEnergy.addConversionByName("Joule", "Foot Pound", val => val / 1.356, val => val * 1.356);
+
+        categoryEnergy.addConversionByName("Kilojoule", "Gram Calorie", val => val * 239.0, val => val / 239.0);
+        categoryEnergy.addConversionByName("Kilojoule", "Kilocalorie", val => val / 4.184, val => val * 4.184);
+        categoryEnergy.addConversionByName("Kilojoule", "Watt hour", val => val / 3.6, val => val * 3.6);
+        categoryEnergy.addConversionByName("Kilojoule", "Kilowatt Hour", val => val / (3.6 * Math.pow(10, 3)), val => val * (3.6 * Math.pow(10, 3)));
+        categoryEnergy.addConversionByName("Kilojoule", "Electronvolt", val => val * (9.223 * Math.pow(10, 18)), val => val / (9.223 * Math.pow(10, 18)));
+        categoryEnergy.addConversionByName("Kilojoule", "British Thermal Unit", val => val / 1.055, val => val * 1.055);
+        categoryEnergy.addConversionByName("Kilojoule", "US Therm", val => val / (1.055 * Math.pow(10, 5)), val => val * (1.055 * Math.pow(10, 5)));
+        categoryEnergy.addConversionByName("Kilojoule", "Foot Pound", val => val * 738.0, val => val / 738.0);
+        
+        categoryEnergy.addConversionByName("Gram Calorie", "Kilocalorie", val => val / 1000.0, val => val * 1000.0);
+        categoryEnergy.addConversionByName("Gram Calorie", "Watt hour", val => val / 860.0, val => val * 860.0);
+        categoryEnergy.addConversionByName("Gram Calorie", "Kilowatt Hour", val => val / 860421.0, val => val * 860421.0);
+        categoryEnergy.addConversionByName("Gram Calorie", "Electronvolt", val => val * (9.223 * Math.pow(10, 18)), val => val / (9.223 * Math.pow(10, 18)));
+        categoryEnergy.addConversionByName("Gram Calorie", "British Thermal Unit", val => val / 252.0, val => val * 252.0);
+        categoryEnergy.addConversionByName("Gram Calorie", "US Therm", val => val / (2.521 * Math.pow(10, 7)), val => val * (2.521 * Math.pow(10, 7)));
+        categoryEnergy.addConversionByName("Gram Calorie", "Foot Pound", val => val * 3.086, val => val / 3.086);
+
+        return categoryEnergy;
     }
 
 
@@ -80,7 +130,7 @@ export class ConversionCollection {
         categoryLength.addUnit("Inches");
         categoryLength.addUnit("Nautical Mile");
 
-        categoryLength.addConversionByName("Kilometer", "Meter", val => val * Math.pow(10, 3), val => { console.log("inverse"); return val / Math.pow(10, 3); });
+        categoryLength.addConversionByName("Kilometer", "Meter", val => val * Math.pow(10, 3), val => val / Math.pow(10, 3));
         categoryLength.addConversionByName("Kilometer", "Centimeter", val => val * Math.pow(10, 5), val => val / Math.pow(10, 5));
         categoryLength.addConversionByName("Kilometer", "Millimeter", val => val * Math.pow(10, 6), val => val / Math.pow(10, 6));
         categoryLength.addConversionByName("Kilometer", "Micrometer", val => val * Math.pow(10, 9), val => val / Math.pow(10, 9));
