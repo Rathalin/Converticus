@@ -3,7 +3,7 @@
 /*
 
 @author:        Daniel Flockert
-@last_edited:   13.09.2020
+@last_edited:   07.10.2020
 
 Main file for Converticus app
 Displays and handles the ConversionCollection
@@ -11,14 +11,33 @@ Displays and handles the ConversionCollection
 */
 
 
-import { ConversionCollection } from "./conversion/ConversionCollection.js";
+import { ConversionCollection } from "./src/js/conversion/ConversionCollection.js";
 
 document.addEventListener('DOMContentLoaded', function () {
 
+    // setup service worker
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js").then(function (reg) {
+            if (reg.installing) {
+                console.log('Service worker installing');
+            } else if (reg.waiting) {
+                console.log('Service worker installed');
+            } else if (reg.active) {
+                console.log('Service worker active');
+            }
+        }).catch(function (error) {
+            // registration failed
+            console.log('Registration failed with ' + error);
+        });
+    } else {
+        console.error("Service worker not supported in this browser");
+    }
+
+    // vue app
     new Vue({
         // name
         el: "#app",
- 
+
 
         // data
         data: {
